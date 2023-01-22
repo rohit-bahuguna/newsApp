@@ -1,25 +1,21 @@
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const appMode = useSelector(state => state.mode);
+	console.log(appMode);
+	return (
+		<div
+			className={`bg-gray-200 dark:bg-zinc-900 transition-all duration-700 ${appMode.initialMode}`}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Home />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;
